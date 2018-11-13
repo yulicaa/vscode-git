@@ -1,6 +1,14 @@
 <?php
  require 'functions.php';
- $mahasiswa=query("SELECT * FROM mahasiswa")
+ $mahasiswa=query("SELECT * FROM mahasiswa");
+
+//  tombol cari ditekan
+// cari pada line 7 adalah nama dari button
+if(isset($_POST["cari"]))
+{
+    // cari line 10adalah function dan keyword adalah nama dari inputan text
+    $mahasiswa = cari($_POST["keyword"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +24,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -33,6 +41,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="#"> Daftar Mahasiswa </a></li>
               <li><a href="tambah.php" class="page-scroll">Tambah Data</a></li>
+              <li><a href="edit.php" class="page-scroll">Update Data</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
 
@@ -40,7 +49,19 @@
           <h1>Daftar Mahasiswa</h1>
           </div>
         </div><!-- /.container-fluid -->
-      </nav>
+    </nav>
+
+    <div class="container" align= "center">
+    <form action="" method="post">
+        <!-- autofocus atribut pada html 5 yang digunakan untuk memberikan tanda pertama kali ke inputan pada saat page di reload -->
+        <!-- placeholder atribut yang digunakan untuk menampilkan tulisan pada textbox-->
+        <!-- autocomplete digunakan agar history pencarian dari user lain tidak ada-->
+
+        <input type="text" name="keyword" size="40" autofocus placeholder="masukkan keyword pencarian" autocomplete="off">
+        <button type="submit" name="cari" class="btn btn-primary"> Cari </button>
+    </form>
+    <br>
+    </div>
 
     <div class="container">
     <table class="table table-bordered">
@@ -58,7 +79,7 @@
 
         <tbody>
         <?php $i=1 ?>
-            <?php while($row = mysqli_fetch_assoc($result)):?>
+            <?php foreach($mahasiswa as $row):?>
                 <tr>
                     <td><?= $i; ?></td>
                     <td><?= $row["Nama"]; ?></td>
@@ -68,12 +89,12 @@
                     <td>
                     <img src="img/<?php echo $row["Gambar"];?>" alt="" heigth="100" width="100" srcset=""></td>
                     <td>
-                    <a href="">Edit</a>
+                    <a href="edit.php?id=<?php echo $row["id"];?>">Edit</a>
                     <a href="hapus.php?id=<?php echo $row["id"];?>"onclick="return confirm('Apakah data ini akan dihapus')">Hapus</a>
                     </td>
                 </tr>
             <?php $i++ ?>
-        <?php endwhile;?>
+        <?php endforeach;?>
         </tbody>
     </table>
 </div>
