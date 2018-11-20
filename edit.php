@@ -77,6 +77,9 @@
               <li><a href="tambah.php" class="page-scroll">Tambah Data</a></li>
               <li class="active"><a href="#">Update Data</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="registrasi.php" class="page-scroll">Registrasi</a></li>
+            </ul>
           </div><!-- /.navbar-collapse -->
 
           <div>
@@ -93,9 +96,11 @@
                 <hr>
               </div>
           </div>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
     <li>
         <input type="hidden" name="id" value="<?= $mhs["id"]; ?>">
+        <!-- untuk mengirim gambar lama -->
+        <input type="hidden" name="GambarLama" value="<?= $mhs["Gambar"]; ?>">
     </li>
         <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -119,7 +124,9 @@
             </div>
             <div class="form-group">
                 <label for="Gambar">Gambar</label>
-                <input type="text" name="Gambar" id="Gambar" class="form-control" required value = <?= $mhs["Gambar"]; ?>>
+                <!-- tambahkan image source agar gambar dapat muncul -->
+                <img src="image/<?= $mhs["Gambar"];?>" alt="" height="100" width="100"><br>
+                <input type="file" name="Gambar" id="Gambar">
             </div>
                 <button type="submit" name="submit" class="btn btn-primary"> Update </button>
         </div>  

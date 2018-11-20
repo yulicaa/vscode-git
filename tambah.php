@@ -5,12 +5,17 @@
     // cek apakah button submit sudah di tekan atau belum
     if(isset($_POST['submit']))
     {
+        // cek isi dari post menggunakan vardump
+        // var_dump($_POST);
+        // var_dump($_FILES);
+        // die();
+
         // ambil data dari tiap element dalam form yang disimpan di variabel baru
         $nama = $_POST["Nama"];
         $nim = $_POST["Nim"];
         $email = $_POST["Email"];
         $jurusan = $_POST["Jurusan"];
-        $gambar = $_POST["Gambar"];
+        // $gambar = $_POST["Gambar"];
 
         // query insert data
         $query = " INSERT INTO mahasiswa
@@ -72,6 +77,9 @@
               <li class="active"><a href="#">Tambah Data</a></li>
               <li><a href="edit.php" class="page-scroll">Update Data</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="registrasi.php"  class="page-scroll">Registrasi</a></li>
+            </ul>
           </div><!-- /.navbar-collapse -->
 
           <div>
@@ -88,7 +96,7 @@
                 <hr>
               </div>
           </div>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="form-group">
@@ -111,7 +119,7 @@
             </div>
             <div class="form-group">
                 <label for="Gambar">Gambar</label>
-                <input type="text" name="Gambar" id="Gambar" class="form-control" required>
+                <input type="file" name="Gambar" id="Gambar">
             </div>
                 <button type="submit" name="submit" class="btn btn-primary"> Tambah </button>
         </div>  

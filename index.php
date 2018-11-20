@@ -43,6 +43,10 @@ if(isset($_POST["cari"]))
               <li><a href="tambah.php" class="page-scroll">Tambah Data</a></li>
               <li><a href="edit.php" class="page-scroll">Update Data</a></li>
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="registrasi.php" class="page-scroll">Registrasi</a></li>
+            </ul>
           </div><!-- /.navbar-collapse -->
 
           <div>
